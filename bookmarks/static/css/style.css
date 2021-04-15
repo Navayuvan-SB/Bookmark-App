@@ -44,6 +44,7 @@ body {
 .bookmarks .row .search-wrapper .input-wrapper select {
   opacity: 0;
   position: absolute;
+  display: none;
 }
 
 .bookmarks .row .search-wrapper .input-wrapper svg {
@@ -51,7 +52,6 @@ body {
   width: 18px;
   height: 18px;
 }
-
 
 .bookmarks .row .search-wrapper .input-wrapper button {
   background: none;
@@ -68,7 +68,6 @@ body {
 .bookmarks .bookmark-items .bookmark-item {
   position: relative;
 }
-
 
 .bookmarks .row .menu-wrapper svg {
   fill: rgb(221, 221, 221);
@@ -166,4 +165,12 @@ body {
 }
 .bookmarks .bookmark-items .bookmark-item .menu-items .menu-item {
   padding: 10px;
+}
+
+.help-text {
+  font-size: 0.8rem;
+  color: rgb(73, 73, 73);
+  margin: auto 0;
+  width: 100%;
+  margin: 10px;
 }
