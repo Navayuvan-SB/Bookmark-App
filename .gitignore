@@ -5,3 +5,4 @@ staticfiles
 
 # Files
 .env
+db.sqlite3
