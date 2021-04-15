@@ -84,7 +84,11 @@
       <div class="col-md-3"></div>
 
       <div class="col-md-9">
+       
         <div class="bookmark-items">
+
+          {% if filter.qs %}
+
           {% for bookmark in filter.qs %}
 
           <div class="bookmark-item">
@@ -130,7 +134,16 @@
           </div>
 
           {% endfor %}
+
+          {% else %}
+
+          <p class="help-text">No Bookmarks found!</p>
+
+        {% endif %}
+
         </div>
+
+        
       </div>
     </div>
   </div>
