@@ -76,6 +76,7 @@ body {
   height: 23px;
   margin: 7px 0;
   float: right;
+  cursor: pointer;
 }
 
 .bookmarks .row .menu-wrapper .menu-items,
@@ -153,6 +154,10 @@ body {
   margin-bottom: 0px;
   margin-left: 10px;
   font-weight: 600;
+}
+
+.bookmarks .bookmark-items .bookmark-menu {
+  cursor: pointer;
 }
 
 .bookmarks .bookmark-items .bookmark-item .menu-items {
