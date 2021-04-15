@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "taggit",
     "bookmarks.apps.BookmarksConfig",
     "django.contrib.admin",
     "django.contrib.auth",
