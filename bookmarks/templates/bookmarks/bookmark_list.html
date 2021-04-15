@@ -1,0 +1,146 @@
+{% extends 'base_generic.html' %} {% block title %} Bookmarks 
+{% endblock title %} {% block content %}
+
+<div class="bookmarks">
+  <div class="container-fluid">
+    <div class="row header">
+      <div class="col-md-4 brand">
+        <h3>Bookmarks</h3>
+      </div>
+
+      <div class="col-md-6 search-wrapper">
+        <form action="" method="GET" id="bookmark-filter-form">
+          <div class="input-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+              fill="#000000"
+            >
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+              />
+            </svg>
+
+            <input
+              type="text"
+              name="name__icontains"
+              id="id_name__icontains"
+              placeholder="Search bookmarks"
+            />
+
+            <select name="sort_by" id="id_sort_by">
+              <option value="" selected></option>
+              <option value="ascending"></option>
+              <option value="descending"></option>
+            </select>
+
+            <button type="submit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#000000"
+              >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-2 menu-wrapper">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 0 24 24"
+          width="24px"
+          fill="#000000"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+          />
+        </svg>
+
+        <div class="menu-items">
+          <h6>Sort by</h6>
+          <hr />
+          <div class="menu-item" id="ascending-sort-option">
+            <p>A-Z</p>
+          </div>
+          <div class="menu-item" id="descending-sort-option">
+            <p>Z-A</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3"></div>
+
+      <div class="col-md-9">
+        <div class="bookmark-items">
+          {% for bookmark in filter.qs %}
+
+          <div class="bookmark-item">
+            <a href="{{bookmark.url}}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#000000"
+              >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-.61.08-1.21.21-1.78L8.99 15v1c0 1.1.9 2 2 2v1.93C7.06 19.43 4 16.07 4 12zm13.89 5.4c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41C17.92 5.77 20 8.65 20 12c0 2.08-.81 3.98-2.11 5.4z"
+                />
+              </svg>
+
+              <p>{{bookmark.name}}</p>
+            </a>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+              fill="#000000"
+            >
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+              />
+            </svg>
+
+            <div class="menu-items">
+              <div class="menu-item">
+                <p>Edit</p>
+              </div>
+              <div class="menu-item">
+                <p>Delete</p>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"
+></script>
+{% load static %}
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

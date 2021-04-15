@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap");
+
+* {
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.bookmarks .row.header {
+  background-color: #3367d6;
+  padding: 10px 0;
+}
+
+.bookmarks .row .brand {
+  margin: auto 0;
+}
+
+.bookmarks .row .brand h3 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.bookmarks .row .search-wrapper .input-wrapper {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 10px;
+}
+
+.bookmarks .row .search-wrapper .input-wrapper input {
+  background: transparent;
+  border: none;
+  color: rgb(221, 221, 221);
+  width: 90%;
+  font-size: 0.8rem;
+}
+
+.bookmarks .row .search-wrapper .input-wrapper {
+  position: relative;
+}
+
+.bookmarks .row .search-wrapper .input-wrapper select {
+  opacity: 0;
+  position: absolute;
+}
+
+.bookmarks .row .search-wrapper .input-wrapper svg {
+  fill: rgb(221, 221, 221);
+  width: 18px;
+  height: 18px;
+}
+
+
+.bookmarks .row .search-wrapper .input-wrapper button {
+  background: none;
+  outline: none;
+  border: none;
+  display: inline-block;
+}
+
+.bookmarks .row .search-wrapper .input-wrapper input:focus {
+  outline: none;
+}
+
+.bookmarks .row .menu-wrapper,
+.bookmarks .bookmark-items .bookmark-item {
+  position: relative;
+}
+
+
+.bookmarks .row .menu-wrapper svg {
+  fill: rgb(221, 221, 221);
+  width: 23px;
+  height: 23px;
+  margin: 7px 0;
+  float: right;
+}
+
+.bookmarks .row .menu-wrapper .menu-items,
+.bookmarks .bookmark-items .bookmark-item .menu-items {
+  position: absolute;
+  top: 0;
+  right: 22px;
+  background-color: #fff;
+  padding: 15px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 6px;
+  display: none;
+  z-index: 10000000000;
+}
+
+.bookmarks .row .menu-wrapper .menu-items h6,
+.bookmarks .bookmark-items .bookmark-item .menu-items h6 {
+  padding: 0px 15px;
+}
+
+.bookmarks .row .menu-wrapper .menu-items hr,
+.bookmarks .bookmark-items .bookmark-item .menu-items hr {
+  margin: 5px 0;
+}
+
+.bookmarks .row .menu-wrapper .menu-items .menu-item,
+.bookmarks .bookmark-items .bookmark-item .menu-items .menu-item {
+  width: 150px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.bookmarks .row .menu-wrapper .menu-items .menu-item p,
+.bookmarks .bookmark-items .bookmark-item .menu-items .menu-item p {
+  margin-bottom: 0;
+}
+
+.bookmarks .row .menu-wrapper .menu-items .menu-item:hover,
+.bookmarks .bookmark-items .bookmark-item .menu-items .menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.bookmarks .bookmark-items {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.bookmarks .bookmark-items .bookmark-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+}
+
+.bookmarks .bookmark-items .bookmark-item a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  width: 90%;
+}
+
+.bookmarks .bookmark-items .bookmark-item svg {
+  fill: rgb(50, 50, 50);
+  width: 18px;
+  height: 18px;
+}
+
+.bookmarks .bookmark-items .bookmark-item p {
+  color: rgb(36, 36, 36);
+  width: 100%;
+  font-size: 0.8rem;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.bookmarks .bookmark-items .bookmark-item .menu-items {
+  display: none;
+  right: 15px;
+}
+.bookmarks .bookmark-items .bookmark-item .menu-items .menu-item {
+  padding: 10px;
+}
