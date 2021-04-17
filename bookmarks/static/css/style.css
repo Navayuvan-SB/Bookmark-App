@@ -164,7 +164,8 @@ body {
   font-weight: 600;
 }
 
-.bookmarks .bookmark-items .bookmark-menu {
+.bookmarks .bookmark-items .bookmark-menu,
+.bookmarks .bookmark-items .bookmark-expand {
   cursor: pointer;
 }
 
@@ -179,9 +180,23 @@ body {
 .bookmarks .bookmark-items .bookmark-item .info {
   display: flex;
   flex-direction: column;
-  /* padding: 10px 0; */
   overflow: hidden;
   height: 0;
+  transition: 0.2s linear all;
+}
+
+.bookmarks .bookmark-items .bookmark-item.expand .info {
+  padding: 10px 0;
+  height: auto;
+  overflow: hidden;
+}
+
+.bookmarks .bookmark-items .bookmark-item svg.bookmark-expand {
+  transition: 0.2s linear all;
+}
+
+.bookmarks .bookmark-items .bookmark-item.expand svg.bookmark-expand {
+  transform: rotate(-90deg);
 }
 
 .bookmarks .bookmark-items .bookmark-item .info .expand {
@@ -222,7 +237,8 @@ body {
   margin: 10px;
 }
 
-.add-bookmark-form {
+.add-bookmark-form,
+.delete-bookmark-form {
   position: absolute;
   top: 0;
   left: 0;
@@ -234,7 +250,8 @@ body {
   display: none;
 }
 
-.add-bookmark-form .form-wrapper {
+.add-bookmark-form .form-wrapper,
+.delete-bookmark-form .form-wrapper {
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -270,14 +287,17 @@ body {
   color: rgb(75, 75, 75);
 }
 
-.add-bookmark-form .form-wrapper .actions {
+.add-bookmark-form .form-wrapper .actions,
+.delete-bookmark-form .form-wrapper .actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
 .add-bookmark-form .form-wrapper .actions .create-btn,
-.add-bookmark-form .form-wrapper .actions .cancel-btn {
+.add-bookmark-form .form-wrapper .actions .cancel-btn,
+.delete-bookmark-form .form-wrapper .actions .delete-btn,
+.delete-bookmark-form .form-wrapper .actions .cancel-btn {
   margin-left: 15px;
   font-weight: 500;
   font-size: 0.8rem;
@@ -292,10 +312,36 @@ body {
   border: none;
 }
 
-.add-bookmark-form .form-wrapper .actions .cancel-btn {
+.add-bookmark-form .form-wrapper .actions .cancel-btn,
+.delete-bookmark-form .form-wrapper .actions .cancel-btn {
   background-color: #fff;
   border: 1px solid #dadce0;
   color: #1a73e8;
   box-shadow: none;
   font-weight: 600;
+}
+
+.delete-bookmark-form .form-wrapper .actions .delete-btn {
+  background-color: #db3236;
+  color: #fff;
+  border: none;
+}
+
+.delete-bookmark-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.delete-bookmark-form p {
+
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+
 }
