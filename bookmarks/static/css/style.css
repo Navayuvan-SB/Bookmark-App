@@ -94,6 +94,7 @@ body {
 .bookmarks .row .menu-wrapper .menu-items h6,
 .bookmarks .bookmark-items .bookmark-item .menu-items h6 {
   padding: 0px 15px;
+  font-size: 0.85rem;
 }
 
 .bookmarks .row .menu-wrapper .menu-items hr,
@@ -111,6 +112,8 @@ body {
 .bookmarks .row .menu-wrapper .menu-items .menu-item p,
 .bookmarks .bookmark-items .bookmark-item .menu-items .menu-item p {
   margin-bottom: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .bookmarks .row .menu-wrapper .menu-items .menu-item:hover,
@@ -127,9 +130,15 @@ body {
 
 .bookmarks .bookmark-items .bookmark-item {
   display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.bookmarks .bookmark-items .bookmark-item .main {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 10px;
+  padding: 4px 8px;
 }
 
 .bookmarks .bookmark-items .bookmark-item a {
@@ -167,10 +176,126 @@ body {
   padding: 10px;
 }
 
+.bookmarks .bookmark-items .bookmark-item .info {
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px 0; */
+  overflow: hidden;
+  height: 0;
+}
+
+.bookmarks .bookmark-items .bookmark-item .info .expand {
+  padding: 10px 0;
+  height: auto;
+}
+
+.bookmarks .bookmark-items .bookmark-item .info .description p {
+  font-size: 0.8rem;
+  color: rgb(73, 73, 73);
+  font-weight: 400;
+}
+
+.bookmarks .bookmark-items .bookmark-item .info .tags {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+.bookmarks .bookmark-items .bookmark-item .info .tags .tag {
+  background-color: #1a73e8;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+.bookmarks .bookmark-items .bookmark-item .info .tags .tag p {
+  margin: 0;
+  padding: 7px 15px;
+  color: #dadce0;
+  font-weight: 400;
+}
+
 .help-text {
   font-size: 0.8rem;
   color: rgb(73, 73, 73);
   margin: auto 0;
   width: 100%;
   margin: 10px;
+}
+
+.add-bookmark-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.add-bookmark-form .form-wrapper {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 6px;
+}
+
+.add-bookmark-form .form-wrapper .header h3 {
+  font-size: 1rem;
+}
+
+.add-bookmark-form .form-wrapper .inputs .input-wrapper {
+  margin: 10px 0;
+}
+
+.add-bookmark-form .form-wrapper .inputs .input-wrapper input,
+.add-bookmark-form .form-wrapper .inputs .input-wrapper textarea {
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.055);
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.add-bookmark-form .form-wrapper .inputs .input-wrapper textarea {
+  height: 50px;
+}
+
+.add-bookmark-form .form-wrapper .inputs .input-wrapper p {
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  color: rgb(75, 75, 75);
+}
+
+.add-bookmark-form .form-wrapper .actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.add-bookmark-form .form-wrapper .actions .create-btn,
+.add-bookmark-form .form-wrapper .actions .cancel-btn {
+  margin-left: 15px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 8px 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.add-bookmark-form .form-wrapper .actions .create-btn {
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+}
+
+.add-bookmark-form .form-wrapper .actions .cancel-btn {
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  color: #1a73e8;
+  box-shadow: none;
+  font-weight: 600;
 }
