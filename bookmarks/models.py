@@ -13,4 +13,11 @@ class Bookmark(models.Model):
     def __str__(self):
         return self.name
 
-    
+    def get_tags(self):
+
+        comma_separated_tags = ""
+        tags = self.tags.names()
+        for tag in tags:
+            comma_separated_tags += tag + ","
+
+        return comma_separated_tags

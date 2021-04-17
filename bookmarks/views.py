@@ -31,3 +31,13 @@ def create_bookmark_view(request):
     if bookmark_form.is_valid():
         bookmark_form.save()
         return HttpResponseRedirect(reverse("bookmarks"))
+
+
+def edit_bookmark_view(request, pk):
+
+    bookmark = Bookmark.objects.get(pk=pk)
+    bookmark_form = BookmarkForm(request.POST, instance=bookmark)
+
+    if bookmark_form.is_valid():
+        bookmark_form.save()
+        return HttpResponseRedirect(reverse("bookmarks"))

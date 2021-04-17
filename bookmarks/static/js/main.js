@@ -72,3 +72,34 @@ $(() => {
         $('.add-bookmark-form').hide()
     });
 }); 
+
+$(() => {
+
+    const bookmarkEditButton = $('.bookmarks .bookmark-items .bookmark-item .menu-items #edit-bookmark')
+    
+    bookmarkEditButton.click((event) => {
+
+        editData = {
+            url: event.target.parentNode.parentNode.parentNode.querySelector('.main a').href,
+            name: event.target.parentNode.parentNode.parentNode.querySelector('.main a p').innerText,
+            description: event.target.parentNode.parentNode.parentNode.querySelector('.info .description p').innerText,
+            tags: event.target.parentNode.parentNode.parentNode.querySelector('.main input[name=tags]').value,
+            pk: event.target.parentNode.parentNode.parentNode.querySelector('.main input[name=pk]').value
+        }
+
+        $("#id_name").val(editData.name);
+        $("#id_description").val(editData.description);
+        $("#id_url").val(editData.url);
+        $("#id_tags").val(editData.tags);
+
+        const bookmarkMenu = $(event.target.parentNode.parentNode);
+        bookmarkMenu.hide();
+
+        $("#bookmark-form").attr("action", "/bookmarks/" + editData.pk + "/edit");
+
+        $('.add-bookmark-form').css('display', 'flex');
+        $('.cancel-btn').click(() => {
+            $('.add-bookmark-form').hide()
+        });
+    });
+});
