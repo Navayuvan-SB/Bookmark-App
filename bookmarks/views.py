@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
 
 from .models import Bookmark
 from .filters import BookmarkFilter
@@ -41,3 +42,10 @@ def edit_bookmark_view(request, pk):
     if bookmark_form.is_valid():
         bookmark_form.save()
         return HttpResponseRedirect(reverse("bookmarks"))
+
+
+def delete_bookmark_view(request, pk):
+    bookmark = get_object_or_404(Bookmark, pk=pk)
+    bookmark.delete()
+
+    return HttpResponseRedirect(reverse("bookmarks"))

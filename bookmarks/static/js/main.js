@@ -16,7 +16,7 @@ $(() => {
 });
 
 $(() => {
-    const bookmarkMenuButton = $('.bookmarks .bookmark-items .bookmark-item svg')
+    const bookmarkMenuButton = $('.bookmarks .bookmark-items .bookmark-item svg.bookmark-menu')
     
     bookmarkMenuButton.click((event) => {
         const bookmarkMenu = $(event.target.parentNode.parentNode.querySelector('.menu-items'));
@@ -28,6 +28,16 @@ $(() => {
         })
     });
 
+});
+
+$(() => {
+    const bookmarkExpandButton = $('.bookmarks .bookmark-items .bookmark-item svg.bookmark-expand');
+    bookmarkExpandButton.click((event) => {
+
+        const bookmarkMenu = $(event.target.parentNode.parentNode);
+        bookmarkMenu.toggleClass('expand')
+
+    });
 });
 
 
@@ -100,6 +110,28 @@ $(() => {
         $('.add-bookmark-form').css('display', 'flex');
         $('.cancel-btn').click(() => {
             $('.add-bookmark-form').hide()
+        });
+    });
+});
+
+
+$(() => {
+    const bookmarkDeleteButton = $('.bookmarks .bookmark-items .bookmark-item .menu-items #delete-bookmark')
+    
+    bookmarkDeleteButton.click((event) => {
+
+        const pk = event.target.parentNode.parentNode.parentNode.querySelector('.main input[name=pk]').value;
+
+        const bookmarkMenu = $(event.target.parentNode.parentNode);
+        bookmarkMenu.hide();
+
+        const deleteForm = $(".delete-bookmark-form");
+        deleteForm.css('display', 'flex');
+
+        $("#delete-bookmark-form").attr("action", "/bookmarks/" + pk + "/delete");
+
+        $('.cancel-btn').click(() => {
+            deleteForm.hide()
         });
     });
 });
