@@ -19,7 +19,7 @@ $(() => {
     const bookmarkMenuButton = $('.bookmarks .bookmark-items .bookmark-item svg')
     
     bookmarkMenuButton.click((event) => {
-        const bookmarkMenu = $(event.target.parentNode.querySelector('.menu-items'));
+        const bookmarkMenu = $(event.target.parentNode.parentNode.querySelector('.menu-items'));
         bookmarkMenu.show();
         $(document).mouseup((e) => {
             if (!bookmarkMenu.is(e.target) && bookmarkMenu.has(e.target).length === 0) {
@@ -53,3 +53,22 @@ $(() => {
     });
 
 });
+
+
+$(() => {
+    $('#add-bookmark').click(() => {
+        
+        $("#bookmark-form").attr("action", "/bookmarks/create");
+        
+        $("#id_name").val("");
+        $("#id_description").val("");
+        $("#id_url").val("");
+        $("#id_tags").val("")
+
+        $('.add-bookmark-form').css('display', 'flex');
+        $('.bookmarks .row .menu-wrapper .menu-items').hide()
+    });
+    $('.cancel-btn').click(() => {
+        $('.add-bookmark-form').hide()
+    });
+}); 

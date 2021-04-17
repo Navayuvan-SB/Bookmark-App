@@ -4,12 +4,14 @@
 <div class="bookmarks">
   <div class="container-fluid">
     <div class="row header">
+      
       <div class="col-md-4 brand">
         <h3>Bookmarks</h3>
       </div>
 
       <div class="col-md-6 search-wrapper">
         <form action="" method="GET" id="bookmark-filter-form">
+
           <div class="input-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -76,76 +78,142 @@
           <div class="menu-item" id="descending-sort-option">
             <p>Z-A</p>
           </div>
+          <hr>
+          <div class="menu-item" id="add-bookmark">
+            <p>Add new bookmark</p>
+          </div>
         </div>
       </div>
+
     </div>
 
     <div class="row">
       <div class="col-md-3"></div>
 
       <div class="col-md-9">
-       
         <div class="bookmark-items">
-
-          {% if filter.qs %}
-
-          {% for bookmark in filter.qs %}
+          {% if filter.qs %} {% for bookmark in filter.qs %}
 
           <div class="bookmark-item">
-            <a href="{{bookmark.url}}">
+
+            <div class="main">
+              <a href="{{bookmark.url}}">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  fill="#000000"
+                >
+                  <path d="M0 0h24v24H0V0z" fill="none" />
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-.61.08-1.21.21-1.78L8.99 15v1c0 1.1.9 2 2 2v1.93C7.06 19.43 4 16.07 4 12zm13.89 5.4c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41C17.92 5.77 20 8.65 20 12c0 2.08-.81 3.98-2.11 5.4z"
+                  />
+                </svg>
+  
+                <p>{{bookmark.name}}</p>
+              </a>
+  
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
                 viewBox="0 0 24 24"
                 width="24px"
                 fill="#000000"
+                class="bookmark-menu"
               >
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-.61.08-1.21.21-1.78L8.99 15v1c0 1.1.9 2 2 2v1.93C7.06 19.43 4 16.07 4 12zm13.89 5.4c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41C17.92 5.77 20 8.65 20 12c0 2.08-.81 3.98-2.11 5.4z"
+                  d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
                 />
               </svg>
+  
+              <input type="hidden" name="tags" value="{{ bookmark.get_tags }}">
+              <input type="hidden" name="pk" value="{{ bookmark.pk }}">
+  
+            </div>
 
-              <p>{{bookmark.name}}</p>
-            </a>
+            <div class="info">
 
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 0 24 24"
-              width="24px"
-              fill="#000000"
-              class="bookmark-menu"
-            >
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-              />
-            </svg>
+              <div class="description">
+                <p>{{bookmark.description}}</p>
+              </div>
+
+              <div class="tags">
+                
+                
+                {% for tag in bookmark.tags.all %}
+                  
+                <div class="tag">
+                  <p>{{tag}}</p>
+                </div>
+
+                {% endfor %}
+
+              </div>
+
+            </div>
 
             <div class="menu-items">
-              <div class="menu-item">
+              <div class="menu-item" id="edit-bookmark">
                 <p>Edit</p>
               </div>
-              <div class="menu-item">
+              <div class="menu-item" id="delete-bookmark">
                 <p>Delete</p>
               </div>
             </div>
+
           </div>
 
-          {% endfor %}
-
-          {% else %}
+          {% endfor %} {% else %}
 
           <p class="help-text">No Bookmarks found!</p>
 
-        {% endif %}
-
+          {% endif %}
         </div>
-
-        
       </div>
     </div>
+  </div>
+</div>
+
+<div class="add-bookmark-form">
+  <div class="form-wrapper">
+    <form method="POST" id="bookmark-form">
+      {% csrf_token %}
+      <div class="header">
+        <h3>Create a bookmark</h3>
+      </div>
+      <hr />
+
+      <div class="inputs">
+        <div class="input-wrapper">
+          <p>Name</p>
+          {{bookmark_form.name}}
+        </div>
+
+        <div class="input-wrapper">
+          <p>Description</p>
+          {{bookmark_form.description}}
+        </div>
+
+        <div class="input-wrapper">
+          <p>URL</p>
+          {{bookmark_form.url}}
+        </div>
+
+        <div class="input-wrapper">
+          <p>Tags (Separated by comma)</p>
+          {{bookmark_form.tags}}
+        </div>
+
+        <hr />
+
+        <div class="actions">
+          <button class="cancel-btn">Cancel</button>
+          <button class="create-btn" type="submit">Save</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 
