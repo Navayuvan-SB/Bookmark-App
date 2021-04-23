@@ -16,7 +16,7 @@ class BookmarkFilter(django_filters.FilterSet):
 
     class Meta:
         model = Bookmark
-        fields = {"name": ["icontains"]}
+        fields = {"name": ["icontains"], "folder": ["exact"]}
 
     def sort_by_preference(self, queryset, name, value):
         expression = "name" if value == "ascending" else "-name"

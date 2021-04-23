@@ -4,14 +4,12 @@
 <div class="bookmarks">
   <div class="container-fluid">
     <div class="row header">
-      
       <div class="col-md-4 brand">
         <h3>Bookmarks</h3>
       </div>
 
       <div class="col-md-6 search-wrapper">
         <form action="" method="GET" id="bookmark-filter-form">
-
           <div class="input-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,6 +31,8 @@
               placeholder="Search bookmarks"
             />
 
+            {{filter.form.folder}}
+
             <select name="sort_by" id="id_sort_by">
               <option value="" selected></option>
               <option value="ascending"></option>
@@ -49,7 +49,7 @@
               >
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
-              </svg>
+              </svg>&nbsp;
             </button>
           </div>
         </form>
@@ -78,24 +78,43 @@
           <div class="menu-item" id="descending-sort-option">
             <p>Z-A</p>
           </div>
-          <hr>
+          <hr />
           <div class="menu-item" id="add-bookmark">
             <p>Add new bookmark</p>
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="row">
-      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <div class="folder-wrapper">
+          <div class="folder active hidden">
+            <div class="indicator">&nbsp;</div>
+
+            <div class="folder-info">
+              {% load static %}
+              <img
+                src="{% static 'images/folder-close.png' %}"
+                class="folder-close"
+              />
+              <img
+                src="{% static 'images/folder-open.png' %}"
+                class="folder-open"
+              />
+
+              <input type="hidden" name="id" value="1">
+              <p>Bookmark Name</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="col-md-9">
         <div class="bookmark-items">
           {% if filter.qs %} {% for bookmark in filter.qs %}
 
           <div class="bookmark-item">
-
             <div class="main">
               <a href="{{bookmark.url}}">
                 <svg
@@ -110,12 +129,23 @@
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-.61.08-1.21.21-1.78L8.99 15v1c0 1.1.9 2 2 2v1.93C7.06 19.43 4 16.07 4 12zm13.89 5.4c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41C17.92 5.77 20 8.65 20 12c0 2.08-.81 3.98-2.11 5.4z"
                   />
                 </svg>
-  
+
                 <p>{{bookmark.name}}</p>
               </a>
-              
 
-              <svg class="bookmark-expand" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>
+              <svg
+                class="bookmark-expand"
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#000000"
+              >
+                <path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"
+                />
+              </svg>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
@@ -129,31 +159,29 @@
                   d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
                 />
               </svg>
-  
-              <input type="hidden" name="tags" value="{{ bookmark.get_tags }}">
-              <input type="hidden" name="pk" value="{{ bookmark.pk }}">
-  
+
+              <input
+                type="hidden"
+                name="tags"
+                value="{{ bookmark.get_tags }}"
+              />
+              <input type="hidden" name="pk" value="{{ bookmark.pk }}" />
             </div>
 
             <div class="info">
-
               <div class="description">
                 <p>{{bookmark.description}}</p>
               </div>
 
               <div class="tags">
-                
-                
                 {% for tag in bookmark.tags.all %}
-                  
+
                 <div class="tag">
                   <p>{{tag}}</p>
                 </div>
 
                 {% endfor %}
-
               </div>
-
             </div>
 
             <div class="menu-items">
@@ -164,7 +192,6 @@
                 <p>Delete</p>
               </div>
             </div>
-
           </div>
 
           {% endfor %} {% else %}
@@ -220,26 +247,16 @@
 </div>
 
 <div class="delete-bookmark-form">
-
-
   <div class="form-wrapper">
-
     <form action="" id="delete-bookmark-form">
-
-
       <p>Are you sure want to delete <strong>{{bookmark.name}}</strong>?</p>
       <div class="actions">
         <button class="cancel-btn" type="button">Cancel</button>
         <button class="delete-btn" type="submit">Delete</button>
       </div>
-
-
     </form>
-
   </div>
-
 </div>
-
 
 <script
   src="https://code.jquery.com/jquery-3.6.0.slim.min.js"

@@ -135,3 +135,59 @@ $(() => {
         });
     });
 });
+
+
+$(() => {
+    const folderSelectElement = $("#id_folder");
+    const options = folderSelectElement.children();
+
+    const folderSelectedValue = folderSelectElement.val();
+    const folderWrapper = $(".folder-wrapper");
+    const mockFolder = $(".folder-wrapper .folder.hidden");
+
+    var folder = mockFolder.clone()
+    folder.removeClass('hidden');
+
+    if (folderSelectedValue){
+        folder.removeClass('active');
+    }
+    
+    var folderName = folder.find('p')
+    folderName.html('All bookmarks')
+
+    var bookmarkId = folder.find('input[name=id]')
+    bookmarkId.val(0)
+
+    folderWrapper.append(folder);
+
+    for (let i = 1; i < options.length; i ++){
+        option = $(options[i]).html()
+        value = $(options[i]).val()
+
+        var folder = mockFolder.clone()
+        folder.removeClass('hidden');
+
+        if (value != folderSelectedValue){
+            folder.removeClass('active');
+        }
+        
+        
+        var folderName = folder.find('p')
+        folderName.html(option)
+
+        var bookmarkId = folder.find('input[name=id]')
+        bookmarkId.val(value)
+
+        folderWrapper.append(folder);
+        
+    }
+
+    const folderElement = $(".folder-wrapper .folder");
+    folderElement.click((event) => {
+        const bookmarkFilterForm = $('#bookmark-filter-form');
+        const id = event.target.parentNode.querySelector('input').value
+        
+        folderSelectElement.val(id);
+        bookmarkFilterForm.submit();
+    })
+});
