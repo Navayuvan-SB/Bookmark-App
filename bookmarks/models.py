@@ -1,10 +1,13 @@
 from django.db import models
 from taggit.managers import TaggableManager
 
+
 class Folder(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Folder Name")    
+    name = models.CharField(max_length=200, verbose_name="Folder Name")
+
     def __str__(self):
         return self.name
+
 
 class Bookmark(models.Model):
 
@@ -13,6 +16,10 @@ class Bookmark(models.Model):
     url = models.URLField()
 
     tags = TaggableManager()
+
+    folder = models.ForeignKey(
+        Folder, on_delete=models.CASCADE, default=None, null=True
+    )
 
     def __str__(self):
         return self.name
