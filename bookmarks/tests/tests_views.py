@@ -3,7 +3,7 @@ from bookmarks.models import Bookmark
 from django.urls import reverse
 
 
-class BookmarkDetailViewTest(TestCase):
+class BookmarkListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
 
