@@ -1,6 +1,10 @@
 from django.db import models
 from taggit.managers import TaggableManager
 
+class Folder(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Folder Name")    
+    def __str__(self):
+        return self.name
 
 class Bookmark(models.Model):
 
